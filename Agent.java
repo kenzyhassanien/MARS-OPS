@@ -105,7 +105,7 @@ public class Agent {
     }
 
     public void setFatigueLevel(int fatigueLevel) {
-        if(fatigueLevel>=0||fatigueLevel<=100)
+        if(fatigueLevel>=0 && fatigueLevel<=100)
             this.fatigueLevel = fatigueLevel;
         else
             System.out.println("Error");
