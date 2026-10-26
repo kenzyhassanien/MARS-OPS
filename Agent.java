@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Lenovo
  */
-public class Agent {
+public abstract class Agent {
 
     private String name;
     private int id;

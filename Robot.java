@@ -12,7 +12,7 @@ public abstract class Robot extends Agent{
 
     public Robot(int batteryLevel, String name, int id, String healthStatus, String currentLocation, List<String> skills, int fatigueLevel, boolean available) {
         super(name, id, healthStatus, currentLocation, skills, fatigueLevel, available);
-        this.batteryLevel = batteryLevel;
+        setBatteryLevel(batteryLevel);
     }
 
     public int getBatteryLevel() {
