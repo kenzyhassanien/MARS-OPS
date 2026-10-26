@@ -14,8 +14,8 @@ public class MedicalOfficer extends Human {
 
     public MedicalOfficer(String medicalSpecialization, int patientsTreated, String name, int id, String healthStatus, String currentLocation, List<String> skills, int fatigueLevel, boolean available) {
         super(name, id, healthStatus, currentLocation, skills, fatigueLevel, available);
-        this.medicalSpecialization = medicalSpecialization;
-        this.patientsTreated = patientsTreated;
+        setMedicalSpecialization(medicalSpecialization);
+        setPatientsTreated(patientsTreated);
     }
 
     
@@ -61,7 +61,7 @@ public class MedicalOfficer extends Human {
         return;
     }
 
-    if (!getHealthStatus().equals("HEALTHY")) {
+    if (!"HEALTHY".equals(getHealthStatus())) {
         System.out.println("Medical Officer is not fit for duty.");
         return;
     }

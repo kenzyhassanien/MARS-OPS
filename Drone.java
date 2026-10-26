@@ -23,6 +23,7 @@ public class Drone extends Robot {
     public void performTask()
     {
         System.out.println("Drone is exploring areas."); 
+        performAerialReconnaissance();
     }
     
     public void performAerialReconnaissance() 
