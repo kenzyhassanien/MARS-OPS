@@ -18,7 +18,8 @@ public abstract class Mission {
     private String status;
     private String failureReason;
     private List<Agent> assignedAgents= new ArrayList<Agent>();
-
+    private List<ResourceRequirement> resourceRequirements = new ArrayList<>();
+    
     public Mission(String name, String ID, int duration) {
         this.name = name;
         this.ID = ID;
@@ -26,15 +27,29 @@ public abstract class Mission {
         this.progress=0;
     }
     
+    public void addResourceRequirement(ResourceRequirement requirement)
+    {
+         if(requirement==null)
+             return;
+         if(resourceRequirements.contains(requirement))
+             return;
+         resourceRequirements.add(requirement);
+    }
+    
     public void addAgent(Agent agent)
     {
         if(!(assignedAgents.contains(agent)))
         assignedAgents.add(agent);
     }
+
+    public List<ResourceRequirement> getResourceRequirements() {
+        return new ArrayList<>(resourceRequirements);
+    }
+    
     
     public List<Agent> getAssignedAgents()
     {
-        return assignedAgents;
+        return new ArrayList<>(assignedAgents);
     }
 
     private void setStatus(String status) {
