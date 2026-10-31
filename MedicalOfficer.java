@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mars.ops;
+
 
 import java.util.List;
 
@@ -18,10 +18,7 @@ public class MedicalOfficer extends Human {
         setPatientsTreated(patientsTreated);
     }
 
-    
-
-
-    
+   
 
     public String getMedicalSpecialization() {
         return medicalSpecialization;
@@ -54,27 +51,42 @@ public class MedicalOfficer extends Human {
         System.out.println("Responding to medical emergencies.");  
     }
     
-    public void respondToEmergency() {
+    public boolean respondToEmergency() {
     if (!isAvailable())
     {
         System.out.println("Medical Officer is not available.");
-        return;
+        return false;
     }
 
-    if (!"HEALTHY".equals(getHealthStatus())) {
+    if (!"HEALTHY".equalsIgnoreCase(getHealthStatus())) {
         System.out.println("Medical Officer is not fit for duty.");
-        return;
+        return false;
     }
     
      if (getFatigueLevel()>=75) {
         System.out.println("Medical Officer is too tired.");
-        return;
+        return false;
     }
 
 
     System.out.println("Responding to a medical emergency.");
     patientsTreated++;
     System.out.println("Medical emergency handled.");
+    return true;
 }
+    @Override
+    public boolean canPerform(Mission mission)
+    {
+        return false;
+    }
+    
+    @Override
+    public boolean canHandleEmergency(Emergencies emergency)
+    {
+        if(emergency == null)
+            return false;
+        
+        return "MEDICAL".equalsIgnoreCase(emergency.getEmergencyType());
+    }
     
 }

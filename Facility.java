@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mars.ops;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -155,6 +154,14 @@ public class Facility {
         return resource.consumeQuantity(amount);
     }
 
+    public int getResourceQuantity(String resourceName)
+    {
+         Resources resource=findResource(resourceName);
+         if(resource==null)
+             return 0;
+         return resource.getQuantity();
+    }
+    
 
 }
 

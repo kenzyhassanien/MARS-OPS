@@ -2,23 +2,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mars.ops;
 
 import java.util.List;
 
 
 public abstract class Robot extends Agent{
     private int batteryLevel;
+    private boolean communicationCapable;
 
     public Robot(int batteryLevel, String name, int id, String healthStatus, String currentLocation, List<String> skills, int fatigueLevel, boolean available) {
         super(name, id, healthStatus, currentLocation, skills, fatigueLevel, available);
-        setBatteryLevel(batteryLevel);
+        this.batteryLevel = batteryLevel;
     }
 
     public int getBatteryLevel() {
         return batteryLevel;
     }
 
+    public boolean isCommunicationCapable() {
+        return communicationCapable;
+    }
+
+    public void setCommunicationCapable(boolean communicationCapable) {
+        this.communicationCapable = communicationCapable;
+    }
+   
     public void setBatteryLevel(int batteryLevel) {
         if(batteryLevel>=0&&batteryLevel<=100)
         this.batteryLevel = batteryLevel;
@@ -32,5 +40,12 @@ public abstract class Robot extends Agent{
     }
     
     public abstract void performTask();
+    
+    public abstract boolean canHandleEmergency(Emergencies emergency);
+    
+    public boolean repairEquipment()
+{
+    return false;
+}
     
 }

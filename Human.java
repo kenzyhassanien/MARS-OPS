@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mars.ops;
 
 import java.util.List;
 
@@ -13,5 +12,12 @@ public abstract class Human extends Agent{
     }
     
    public abstract void performDuty();
+   
+   public abstract boolean canHandleEmergency(Emergencies emergency);
+   
+   public boolean repairEquipment()
+{
+    return false;
+}
    
 }

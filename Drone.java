@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mars.ops;
+
 
 import java.util.List;
 
@@ -29,5 +29,24 @@ public class Drone extends Robot {
     public void performAerialReconnaissance() 
     { reconnaissanceMissions++; 
     System.out.println("Drone is performing aerial reconnaissance."); 
+    }
+    
+    @Override
+    public boolean canPerform(Mission mission)
+    {
+        if(mission instanceof RescueMission)
+        {
+            if(isCommunicationCapable())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    @Override
+    public boolean canHandleEmergency(Emergencies emergency)
+    {
+        return false;
     }
 }

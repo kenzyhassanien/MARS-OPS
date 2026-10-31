@@ -1,8 +1,9 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mars.ops;
+
 
 /**
  *
@@ -14,11 +15,14 @@ public abstract class Emergencies {
     private String status;
     private String reason;
 
-    public Emergencies(Facility affectedFacility, String status, String reason) {
-        this.affectedFacility = affectedFacility;
-        this.status = status;
-        this.reason = reason;
+   public Emergencies(Facility affectedFacility, String status, String reason) {
+    if (affectedFacility == null) {
+        System.out.println("Affected facility cannot be null.");
     }
+    this.affectedFacility = affectedFacility;
+    this.status = status;
+    this.reason = reason;
+}
 
     public Facility getAffectedFacility() {
         return affectedFacility;
@@ -54,5 +58,7 @@ public abstract class Emergencies {
            this.reason = reason;
        }
     }
+    
+    public abstract String getEmergencyType();
+    
 }
-

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mars.ops;
+
 
 import java.util.List;
 
@@ -72,5 +72,26 @@ public class Scientist extends Human {
     System.out.println("Conducting scientific research.");
     return true;
 }
+    @Override
+    public boolean canPerform(Mission mission)
+    {
+        if(mission instanceof ExplorationMission)
+        {
+            ExplorationMission exploration = (ExplorationMission) mission;
+            return getSkills().contains(exploration.getRequiredSkill());
+        }
+        
+        if(mission instanceof ResearchMission)
+        {
+            ResearchMission research = (ResearchMission) mission;
+            return getSkills().contains(research.getRequiredSkill());
+        }
+        return false;
+    }
     
+    @Override
+    public boolean canHandleEmergency(Emergencies emergency)
+    {
+        return false;
+    }
 }

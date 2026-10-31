@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mars.ops;
+
 
 import java.util.List;
 
@@ -48,29 +48,38 @@ public class Engineer extends Human {
         System.out.println("Repairing damaged equipment.");   
     }
    
-   public void repairEquipment() {
-    if (!isAvailable())
-    {
-        System.out.println("Engineer is not available.");
-        return;
-    }
+    @Override
+   public boolean repairEquipment() {
 
     if (!"HEALTHY".equals(getHealthStatus())) 
     {
         System.out.println("Engineer is not healthy enough to work.");
-        return;
+        return false;
     }
     
     if (getFatigueLevel()>=75) {
         System.out.println("Engineer is too tired.");
-        return;
+        return false;
     }
 
     System.out.println("Engineer is repairing damaged equipment.");
     repairCount++;
     System.out.println("Repair completed successfully.");
+    return true;
 }
+   
+    @Override
+   public boolean canPerform(Mission mission)
+   {
+       return mission instanceof RepairMission;
+   }
     
-    
+    @Override
+    public boolean canHandleEmergency(Emergencies emergency)
+    {
+        if(emergency == null)
+            return false;
+        return emergency instanceof OxygenLeak;
+    }
     
 }

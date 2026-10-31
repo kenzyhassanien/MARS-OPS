@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mars.ops;
+
 
 import java.util.List;
 import java.util.ArrayList;
@@ -20,9 +20,9 @@ public class Fire extends Emergencies {
     private List<Agent> responders;
     private List<Agent> personnelPresent;
 
-    public Fire(boolean fireDetected, int oxygenConsumption, List<Agent> responders, List<Agent> personnelPresent, Facility affectedFacility, String status, String reason) {
+    public Fire( int oxygenConsumption, List<Agent> responders, List<Agent> personnelPresent, Facility affectedFacility, String status, String reason) {
         super(affectedFacility, status, reason);
-        this.fireDetected = false;
+        
         this.oxygenConsumption = oxygenConsumption;
         this.responders = new ArrayList<>();
         this.personnelPresent = new ArrayList<>();
@@ -64,7 +64,11 @@ public class Fire extends Emergencies {
         return personnelPresent;
     }
 
-        
+    @Override
+    public String getEmergencyType()
+    {
+        return "FIRE";
+    }
    
 
     public void detectFire() {
@@ -160,7 +164,6 @@ public class Fire extends Emergencies {
         }
     }
 }
-
 
 
 

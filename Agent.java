@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package mars.ops;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +20,7 @@ public abstract class Agent {
     private List<String> skills;
     private int fatigueLevel;
     private boolean available;
+    
 
     public Agent(String name, int id, String healthStatus, String currentLocation, List<String> skills, int fatigueLevel, boolean available) {
         this.name = name;
@@ -28,7 +28,7 @@ public abstract class Agent {
         this.healthStatus = healthStatus;
         this.currentLocation = currentLocation;
         this.skills = skills;
-        if(fatigueLevel>=0||fatigueLevel<=100)
+        if(fatigueLevel>=0 && fatigueLevel<=100)
             this.fatigueLevel = fatigueLevel;
         this.available = available;
     }
@@ -50,7 +50,7 @@ public abstract class Agent {
     }
 
     public List<String> getSkills() {
-        return skills;
+        return new ArrayList<>(skills);
     }
 
     public int getFatigueLevel() {
@@ -95,16 +95,17 @@ public abstract class Agent {
         this.currentLocation = currentLocation;
     }
 
-    public void addSkill(String skill ) {
-        if (skill!=null&&!skill.isBlank()) {
-            skills.add(skill);
-        } else {
-            System.out.println("Invalid skill.");
-        }
+    public void setSkills(List<String> skills) {
+       for(String skill:skills) {
+          if (skill==null||skill.isBlank()) {
+              System.out.println("Error");
+    }
+}
+        this.skills = skills;
     }
 
     public void setFatigueLevel(int fatigueLevel) {
-        if(fatigueLevel>=0&&fatigueLevel<=100)
+        if(fatigueLevel>=0 && fatigueLevel<=100)
             this.fatigueLevel = fatigueLevel;
         else
             System.out.println("Error");
@@ -114,5 +115,6 @@ public abstract class Agent {
         this.available = available;
     }
     
+    public abstract boolean canPerform(Mission mission);
     
 }

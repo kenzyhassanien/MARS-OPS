@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mars.ops;
+
 
 /**
  *
@@ -12,7 +12,7 @@ public class OxygenLeak extends Emergencies{
     private int oxygenLoss;
     private boolean leakDetected;
 
-    public OxygenLeak(int oxygenLeak, boolean leakDetected, Facility affectedFacility, String status, String reason) {
+    public OxygenLeak(int oxygenLoss,Facility affectedFacility, String status, String reason) {
         super(affectedFacility, status, reason);
         if (affectedFacility == null) {
             System.out.println("Affected facility cannot be null.");
@@ -35,6 +35,12 @@ public class OxygenLeak extends Emergencies{
 
     public int getOxygenLoss() {
         return oxygenLoss;
+    }
+    
+    @Override
+    public String getEmergencyType()
+    {
+        return "OXYGEN_LEAK";
     }
 
     public boolean isLeakDetected() {
@@ -87,9 +93,10 @@ public class OxygenLeak extends Emergencies{
             actualLoss = oxygenLoss;
         }
 
-        if (actualLoss > 0) {
-            oxygen.consumeQuantity(actualLoss);
-        }
+       if (actualLoss > 0 && !oxygen.consumeQuantity(actualLoss)) {
+        System.out.println("Failed to consume oxygen.");
+        return false;
+}
 
         leakDetected = true;
         setStatus("IN_PROGRESS");
@@ -110,6 +117,7 @@ public class OxygenLeak extends Emergencies{
         }
 
         if (repaired) {
+            getAffectedFacility().setOperationalStatus(true);
             setStatus("RESOLVED");
             setReason("");
 
@@ -120,7 +128,10 @@ public class OxygenLeak extends Emergencies{
         Facility affectedFacility = getAffectedFacility();
         Resources oxygen = affectedFacility.findResource("Oxygen");
 
-        if (oxygen != null) {
+       if (oxygen == null) {
+    System.out.println("Oxygen resource not found.");
+    return false;
+     } 
             int actualLoss;
 
             if (oxygen.getQuantity() < oxygenLoss) {
@@ -129,13 +140,14 @@ public class OxygenLeak extends Emergencies{
                 actualLoss = oxygenLoss;
             }
 
-            if (actualLoss > 0) {
-                oxygen.consumeQuantity(actualLoss);
-            }
+           if (actualLoss > 0 && !oxygen.consumeQuantity(actualLoss)) {
+           System.out.println("Failed to consume additional oxygen.");
+           return false;
+           }
 
             System.out.println("Additional oxygen lost: " + actualLoss);
-        }
-
+        
+        getAffectedFacility().setOperationalStatus(false);
         setStatus("UNRESOLVED");
         setReason("Oxygen leak could not be repaired.");
 
@@ -148,6 +160,5 @@ public class OxygenLeak extends Emergencies{
     
     
     
-
 
 

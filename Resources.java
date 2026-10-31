@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mars.ops;
+
 
 /**
  *
@@ -15,6 +15,11 @@ public abstract class Resources {
 
     public Resources(String name, int quantity) {
         this.name = name;
+        if(quantity < 0)
+        {
+            System.out.println("Quantity cannot be negative");
+            this.quantity=0;
+        }
         this.quantity = quantity;
     }
 

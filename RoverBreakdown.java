@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mars.ops;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,11 +56,6 @@ public class RoverBreakdown extends Emergencies {
     public List<ResourceRequirement> getRepairRequirements() {
         return repairRequirements;
     }
-
-    public Facility getAffectedFacility() {
-        return affectedFacility;
-    }
-    
     
      public void detectBreakdown() {
 
@@ -87,4 +82,10 @@ public class RoverBreakdown extends Emergencies {
     
     
  }
+     
+    @Override
+     public String getEmergencyType()
+     {
+         return "ROVER_BREAKDOWN";
+     }
 }
