@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mars.ops;
+
 
 /**
  *
@@ -33,7 +33,8 @@ public class Simulation {
         for (int i=0;i<units;i++)
         {
             Mission mission=colony.getActiveMission();
-            
+            colony.consumeTimeResources();
+            colony.getEnvironment().changeEnvironment();
             if (mission!=null && "IN_PROGRESS".equals(mission.getStatus())) {
 
                 boolean advanced=colony.advanceActiveMission();

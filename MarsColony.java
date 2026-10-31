@@ -56,6 +56,10 @@ public class MarsColony {
     public List<Emergencies> getEmergencies() {
         return new ArrayList<>(emergencies);
     }
+
+    public Environment getEnvironment() {
+        return environment;
+    }
     
 
     public List<Facility> getFacilities() {
@@ -395,6 +399,21 @@ public boolean consumeColonyResources(String resourceName, int amount,List<Resou
             activeMission=null;
         }
         return true;
+    }
+    
+    public void consumeTimeResources()
+    {
+        List<ResourceAllocation> resourcesO2 = new ArrayList<>();
+       if(!consumeColonyResources("Oxygen",2,resourcesO2))
+            System.out.println("Insufficient Oxygen!");
+       
+       List<ResourceAllocation> resourcesWater = new ArrayList<>();
+       if(!consumeColonyResources("Water",2,resourcesWater))
+            System.out.println("Insufficient Water!");
+       
+       List<ResourceAllocation> resourcesFood = new ArrayList<>();
+       if(!consumeColonyResources("Food",1,resourcesFood))
+            System.out.println("Insufficient Food!");
     }
     
      public void getColonyStatusReport()
@@ -789,4 +808,6 @@ if (!consumeColonyResources("Battery Power", 5, new ArrayList<>()))
      breakdown.setReason("Rover repaired successfully");
      return true;
     } 
+    
+    
 }

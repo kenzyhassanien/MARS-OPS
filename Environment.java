@@ -7,13 +7,17 @@
  *
  * @author Kenzy Hassanen
  */
+
+import java.util.Random;
+
 public class Environment {
     private String condition;
+    private Random random = new Random();
 
     public Environment(String condition) {
         this.condition="Normal";
-        setCondition(condition);
     }
+    
 
     public String getCondition() {
         return condition;
@@ -65,5 +69,16 @@ public class Environment {
         }
     }
 
+    public void changeEnvironment()
+    {
+        int environment = random.nextInt(3);
+        
+        if(environment == 0)
+            setCondition("NORMAL");
+        else if(environment == 1)
+            setCondition("DUST STORM");
+        else
+            setCondition("COMMUNICATION DISRUPTION");
+    }
     
 }
